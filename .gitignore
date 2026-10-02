@@ -1,0 +1,10 @@
+# Python virtual environments
+venv/
+.venv/
+env/
+
+# Standardowe Pythona
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
