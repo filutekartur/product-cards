@@ -20,3 +20,16 @@ def home():
         st.write("Przeglądaj słowniki")
         if st.button("dictionary")
             change_view("dictionary")
+
+
+pages = {
+    "home" : home,
+    "new" : new
+}
+
+if "page" not in st.session_state:
+    st.session_state.page = "home"
+if not st.session_state.page=="home":
+    st.button("home",on_click=change_view,args=("home",))
+
+pages[st.session_state.page]()
