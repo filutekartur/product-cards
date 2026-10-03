@@ -14,11 +14,11 @@ def home():
             change_view("new")
     with m_col:
         st.write("Przeglądaj karty")
-        if st.button("list")
-            change_view("list")
+        if st.button("clist"):
+            change_view("clist")
     with r_col:
         st.write("Przeglądaj słowniki")
-        if st.button("dictionary")
+        if st.button("dictionary"):
             change_view("dictionary")
 
 

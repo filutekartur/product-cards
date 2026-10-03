@@ -1,4 +1,3 @@
-from word import doctpl
 import streamlit as st
 
 def new():
