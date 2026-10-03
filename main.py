@@ -1,4 +1,5 @@
 import streamlit as st
+from new import new
 
 def change_view(page,card_id=None):
     st.session_state.page=page
