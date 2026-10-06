@@ -11,3 +11,6 @@ __pycache__/
 
 # Database
 *.db
+
+# Other
+.streamlit/
