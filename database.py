@@ -16,6 +16,11 @@ def list_of_cards_index(index):
     return cards
 
 def insert_card(data):
+    cards = list_of_cards_index(data["indeks"])
+    if cards.shape[0]>0:
+        data["wersja"]=int(cards['wersja'].max())+1
+    else:
+        data["wersja"]=1
     with conn.session as s:
         s.execute(text(
             """
