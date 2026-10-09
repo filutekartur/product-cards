@@ -36,6 +36,3 @@ def insert_card(data):
             }
         )
         s.commit()
-
-st.dataframe(list_of_cards())
-st.dataframe(list_of_cards_index(800000000))
