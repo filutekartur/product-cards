@@ -4,13 +4,14 @@ from sqlalchemy import text
 conn = st.connection('prodcard', type='sql')
 
 def list_of_cards():
-    cards=conn.query('select * from cards')
+    cards=conn.query('select * from cards',ttl=0)
     return cards
 
 def list_of_cards_index(index):
     cards=conn.query(
         'select * from cards where indeks = :index',
-        params = {'index': index}
+        params = {'index': index},
+        ttl=0
     )
     return cards
 
