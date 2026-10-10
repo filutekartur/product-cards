@@ -9,7 +9,7 @@ def list_of_cards():
 
 def list_of_cards_index(index):
     cards=conn.query(
-        'select * from cards where indeks = :index',
+        'select * from cards where index = :index',
         params = {'index': index},
         ttl=0
     )
