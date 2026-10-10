@@ -7,32 +7,33 @@ def list_of_cards():
     cards=conn.query('select * from cards',ttl=0)
     return cards
 
-def list_of_cards_index(index):
+def list_of_cards_indeks(indeks):
     cards=conn.query(
-        'select * from cards where index = :index',
-        params = {'index': index},
+        'select * from cards where indeks = :indeks',
+        params = {'indeks': indeks},
         ttl=0
     )
     return cards
 
-def insert_card(data):
-    cards = list_of_cards_index(data["indeks"])
+def insert_card(form_data):
+    cards = list_of_cards_indeks(form_data["indeks"])
     if cards.shape[0]>0:
-        data["wersja"]=int(cards['wersja'].max())+1
+        form_data["version"]=int(cards['version'].max())+1
     else:
-        data["wersja"]=1
+        form_data["version"]=1
     with conn.session as s:
         s.execute(text(
             """
-            INSERT INTO cards (indeks,wersja,data_wprowadzenia,data_modyfikacji,dane) 
-            VALUES (:ind,:wer,:data_w,:data_m,:dane)
+            INSERT INTO cards (indeks,version,created_at,updated_at,template,data) 
+            VALUES (:indeks,:version,:created_at,:updated_at,:template,:data)
             """),
             params = {
-                "ind":data["indeks"],
-                "wer":data["wersja"],
-                "data_w":data["data_wprowadzenia"],
-                "data_m":data["data_modyfikacji"],
-                "dane":data["dane"],
+                "indeks":form_data["indeks"],
+                "version":form_data["version"],
+                "created_at":form_data["created_at"],
+                "updated_at":form_data["updated_at"],
+                "template":form_data["template"],
+                "data":str(form_data),
             }
         )
         s.commit()
