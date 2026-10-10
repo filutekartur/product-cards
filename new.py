@@ -2,13 +2,13 @@ import streamlit as st
 
 def new():
     st.title("Nowa karta",text_alignment="center")
-    with st.form(key="karta"):
-        st.number_input("indeks",key="index",step=1)
+    with st.form(key="card"):
+        st.number_input("indeks",key="indeks",step=1)
         st.text_input("pkwiu",key="pkwiu")
-        st.datetime_input("data_aktualizacji",key="date_upd",format="YYYY-MM-DD")
-        st.datetime_input("data_wprowadzenia",key="date_ins",format="YYYY-MM-DD")
-        st.text_input("tworca",key="owner")
-        st.text_input("aktualizujacy",key="updater")
+        st.datetime_input("data_wprowadzenia",key="created_at",format="YYYY-MM-DD")
+        st.datetime_input("data_aktualizacji",key="updated_at",format="YYYY-MM-DD")
+        st.text_input("twórca",key="created_by")
+        st.text_input("aktualizujacy",key="updated_by")
         st.text_input("cechy",key="characteristic")
         st.text_input("konsystencja",key="consistency")
         st.text_input("barwa",key="color")
