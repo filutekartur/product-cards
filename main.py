@@ -1,5 +1,6 @@
 import streamlit as st
 from new import new
+from cards import cards
 
 def change_view(page,card_id=None):
     st.session_state.page=page
@@ -15,8 +16,8 @@ def home():
             change_view("new")
     with m_col:
         st.write("Przeglądaj karty")
-        if st.button("clist"):
-            change_view("clist")
+        if st.button("cards"):
+            change_view("cards")
     with r_col:
         st.write("Przeglądaj słowniki")
         if st.button("dictionary"):
@@ -25,7 +26,8 @@ def home():
 
 pages = {
     "home" : home,
-    "new" : new
+    "new" : new,
+    "cards" : cards,
 }
 
 if "page" not in st.session_state:
