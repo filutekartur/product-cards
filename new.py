@@ -20,6 +20,12 @@ def read_file(file_name):
         content=json.loads(f.read())
     return content
 
+def valid_indeks(indeks):
+    if len(indeks)!=8:
+        return "Indeks musi mieć dokładnie 8 znaków"
+    if not indeks.isascii() or not indeks.isdigit():
+        return "Indeks może zawierać wyłącznie cyfry 0-9"
+
 def new():
     st.title("Nowa karta",text_alignment="center")
     with st.form(key="card"):
