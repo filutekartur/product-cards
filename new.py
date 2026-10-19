@@ -3,6 +3,7 @@ import json
 
 def form():
     st.selectbox("Szablon",["","podroby_1","podroby_2"],placeholder="Wybierz szablon",key="template")
+    keys={}
     if st.session_state.template:
         with st.form(key="card"):
             fields=read_file(f"templates/{st.session_state.template}")
@@ -13,7 +14,10 @@ def form():
                     st.number_input(p["label"],key=p["key"])
                 if p["type"]=="datetime_input":
                     st.date_input(p["label"],key=p["key"],format="YYYY-MM-DD")
-            st.form_submit_button()
+                keys[p["key"]]=st.session_state[p["key"]]
+            if st.form_submit_button():
+                return keys
+    return None
 
 def read_file(file_name):
     with open(f"{file_name}.json", encoding="utf-8") as f:
@@ -27,6 +31,7 @@ def valid_indeks(indeks):
         return "Indeks może zawierać wyłącznie cyfry 0-9"
 
 def new():
+    keys={}
     if "lock" not in st.session_state:
         st.session_state.lock = False
     st.title("Nowa karta",text_alignment="center")
@@ -50,4 +55,4 @@ def new():
         r.write("")
         r.markdown(":green[✓]")
         with st.container(border=True):
-            form()
+            keys=form()
