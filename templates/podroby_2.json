@@ -1,0 +1,77 @@
+[
+	{
+	  "label": "Indeks",
+	  "key": "indeks",
+	  "type": "number_input"
+	},
+	{
+	  "label": "PKWiU",
+	  "key": "pkwiu",
+	  "type": "text_input"
+	},
+	{
+	  "label": "Data_wprowadzenia",
+	  "key": "created_at",
+	  "type": "datetime_input"
+	},
+	{
+	  "label": "Data_aktualizacji",
+	  "key": "updated_at",
+	  "type": "datetime_input"
+	},
+	{
+	  "label": "Twórca",
+	  "key": "created_by",
+	  "type": "text_input"
+	},
+	{
+	  "label": "Aktualizujący",
+	  "key": "updated_by",
+	  "type": "text_input"
+	},
+	{
+	  "label": "Nazwa_polska",
+	  "key": "name_pl",
+	  "type": "text_input"
+	},
+	{
+	  "label": "Nazwa_angielska",
+	  "key": "name_eng",
+	  "type": "text_input"
+	},
+	{
+	  "label": "Cechy",
+	  "key": "characteristic",
+	  "type": "text_input"
+	},
+	{
+	  "label": "Konsystencja",
+	  "key": "consistency",
+	  "type": "text_input"
+	},
+	{
+	  "label": "Barwa",
+	  "key": "color",
+	  "type": "text_input"
+	},
+	{
+	  "label": "Zapach",
+	  "key": "smell",
+	  "type": "text_input"
+	},
+	{
+	  "label": "Forma_pakowania",
+	  "key": "package",
+	  "type": "text_input"
+	},
+	{
+	  "label": "Etykieta",
+	  "key": "label",
+	  "type": "text_input"
+	},
+	{
+	  "label": "Temperatura przechowywania",
+	  "key": "temp",
+	  "type": "text_input"
+	}
+]

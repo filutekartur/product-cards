@@ -1,6 +1,20 @@
 import streamlit as st
 import json
 
+def form():
+    st.selectbox("Szablon",["","podroby_1","podroby_2"],placeholder="Wybierz szablon",key="template")
+    if st.session_state.template:
+        with st.form(key="card"):
+            fields=read_file(f"templates/{st.session_state.template}")
+            for p in fields:
+                if p["type"]=="text_input":
+                    st.text_input(p["label"],key=p["key"])
+                if p["type"]=="number_input":
+                    st.number_input(p["label"],key=p["key"])
+                if p["type"]=="datetime_input":
+                    st.date_input(p["label"],key=p["key"],format="YYYY-MM-DD")
+            st.form_submit_button()
+
 def read_file(file_name):
     with open(f"{file_name}.json", encoding="utf-8") as f:
         content=json.loads(f.read())
