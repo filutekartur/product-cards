@@ -27,19 +27,27 @@ def valid_indeks(indeks):
         return "Indeks może zawierać wyłącznie cyfry 0-9"
 
 def new():
+    if "lock" not in st.session_state:
+        st.session_state.lock = False
     st.title("Nowa karta",text_alignment="center")
-    with st.form(key="card"):
-        st.number_input("Indeks",key="indeks",step=1)
-        st.text_input("Pkwiu",key="pkwiu")
-        st.datetime_input("Data_wprowadzenia",key="created_at",format="YYYY-MM-DD")
-        st.datetime_input("Data_aktualizacji",key="updated_at",format="YYYY-MM-DD")
-        st.text_input("Twórca",key="created_by")
-        st.text_input("Aktualizujacy",key="updated_by")
-        st.text_input("Cechy",key="characteristic")
-        st.text_input("Konsystencja",key="consistency")
-        st.text_input("Barwa",key="color")
-        st.text_input("Zapach",key="smell")
-        st.text_input("Forma_pakowania",key="package")
-        st.text_input("Etykieta",key="label")
-        #st.file_uploader("zdjecia",key="image",type="image/*")
-        st.form_submit_button()
+    with st.container(border=True):
+        l,r=st.columns([5,9])
+        l.text_input("Pkwiu1",key="pkwiu1")
+        if st.session_state.pkwiu1:
+            val = valid_indeks(st.session_state.pkwiu1)
+            if not val:
+                r.write("")
+                r.write("")
+                r.markdown(":green[✓]")
+                if l.button("Zatwierdz"):
+                    st.session_state.lock = True
+                    st.rerun()
+            else:
+                r.write("")
+                r.write("")
+                r.markdown(f":red[✗] :red[{val}]")
+    if st.session_state.pkwiu1 and st.session_state.lock:
+        r.write("")
+        r.markdown(":green[✓]")
+        with st.container(border=True):
+            form()
