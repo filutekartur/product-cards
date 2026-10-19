@@ -1,4 +1,10 @@
 import streamlit as st
+import json
+
+def read_file(file_name):
+    with open(f"{file_name}.json", encoding="utf-8") as f:
+        content=json.loads(f.read())
+    return content
 
 def new():
     st.title("Nowa karta",text_alignment="center")
