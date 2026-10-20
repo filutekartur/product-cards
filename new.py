@@ -5,7 +5,7 @@ from datetime import datetime
 
 def form():
     st.selectbox("Szablon",["","podroby_1","podroby_2"],placeholder="Wybierz szablon",key="template")
-    keys={}
+    keys={"indeks":st.session_state.indeks}
     if st.session_state.template:
         with st.form(key="card"):
             fields=read_file(f"templates/{st.session_state.template}")
@@ -18,8 +18,11 @@ def form():
                     st.date_input(p["label"],key=p["key"],format="YYYY-MM-DD")
                 keys[p["key"]]=st.session_state[p["key"]]
             if st.form_submit_button():
+                keys["template"]=st.session_state["template"]
+                keys["created_at"]=keys["created_at"].strftime("%Y-%m-%d")
+                keys["updated_at"]=keys["updated_at"].strftime("%Y-%m-%d")
                 return keys
-    return None
+    return {}
 
 def read_file(file_name):
     with open(f"{file_name}.json", encoding="utf-8") as f:
