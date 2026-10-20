@@ -1,5 +1,7 @@
 import streamlit as st
 import json
+from database import insert_card
+from datetime import datetime
 
 def form():
     st.selectbox("Szablon",["","podroby_1","podroby_2"],placeholder="Wybierz szablon",key="template")
