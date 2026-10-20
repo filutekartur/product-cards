@@ -62,4 +62,4 @@ def new():
         r.write("")
         r.markdown(":green[✓]")
         with st.container(border=True):
-            keys=form()
+            keys.update(form())
