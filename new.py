@@ -10,6 +10,8 @@ def form():
         with st.form(key="card"):
             fields=read_file(f"templates/{st.session_state.template}")
             for p in fields:
+                if p["key"] == "indeks":
+                    continue
                 if p["type"]=="text_input":
                     st.text_input(p["label"],key=p["key"])
                 if p["type"]=="number_input":
