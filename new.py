@@ -44,9 +44,9 @@ def new():
     st.title("Nowa karta",text_alignment="center")
     with st.container(border=True):
         l,r=st.columns([5,9])
-        l.text_input("Pkwiu1",key="pkwiu1")
-        if st.session_state.pkwiu1:
-            val = valid_indeks(st.session_state.pkwiu1)
+        l.text_input("Indeks",key="indeks")
+        if st.session_state.indeks:
+            val = valid_indeks(st.session_state.indeks)
             if not val:
                 r.write("")
                 r.write("")
@@ -58,7 +58,7 @@ def new():
                 r.write("")
                 r.write("")
                 r.markdown(f":red[✗] :red[{val}]")
-    if st.session_state.pkwiu1 and st.session_state.lock:
+    if st.session_state.indeks and st.session_state.lock:
         r.write("")
         r.markdown(":green[✓]")
         with st.container(border=True):
