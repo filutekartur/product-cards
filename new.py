@@ -38,7 +38,7 @@ def valid_indeks(indeks):
         return "Indeks może zawierać wyłącznie cyfry 0-9"
 
 def new():
-    keys={}
+    cards_data={}
     if "lock" not in st.session_state:
         st.session_state.lock = False
     st.title("Nowa karta",text_alignment="center")
@@ -62,4 +62,6 @@ def new():
         r.write("")
         r.markdown(":green[✓]")
         with st.container(border=True):
-            keys.update(form())
+            cards_data.update(form())
+    if cards_data:
+        insert_card(cards_data)
