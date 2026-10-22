@@ -1,5 +1,5 @@
 import streamlit as st
-from new import new
+from new import new,create_from_copy
 from cards import cards
 from navigation import change_view
 
@@ -24,6 +24,7 @@ pages = {
     "home" : home,
     "new" : new,
     "cards" : cards,
+    "create_from_copy" : create_from_copy,
 }
 
 if "page" not in st.session_state:
