@@ -32,7 +32,7 @@ pages = {
 
 if "page" not in st.session_state:
     st.session_state.page = "home"
-if not st.session_state.page=="home":
+if st.session_state.page != "home":
     st.button("home",on_click=change_view,args=("home",))
 
 pages[st.session_state.page]()
