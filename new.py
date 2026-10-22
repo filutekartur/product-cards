@@ -65,3 +65,6 @@ def new():
             cards_data.update(form())
     if cards_data:
         insert_card(cards_data)
+
+def create_from_copy(id):
+    None
