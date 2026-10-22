@@ -4,12 +4,12 @@ from sqlalchemy import text
 conn = st.connection('prodcard', type='sql')
 
 def list_of_cards():
-    cards=conn.query('select * from cards_v',ttl=0)
+    cards=conn.query('select * from cards_light_v',ttl=0)
     return cards
 
 def list_of_cards_indeks(indeks):
     cards=conn.query(
-        'select * from cards_v where indeks = :indeks',
+        'select * from cards_light_v where indeks = :indeks',
         params = {'indeks': indeks},
         ttl=0
     )
