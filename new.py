@@ -1,6 +1,6 @@
 import streamlit as st
 import json
-from database import insert_card
+from database import insert_card,card_by_id
 from datetime import datetime
 
 def form():
@@ -66,5 +66,5 @@ def new():
     if cards_data:
         insert_card(cards_data)
 
-def create_from_copy(id):
-    None
+def create_from_copy():
+    card = card_by_id(st.session_state.card_id)
