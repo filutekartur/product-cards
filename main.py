@@ -1,11 +1,7 @@
 import streamlit as st
 from new import new
 from cards import cards
-
-def change_view(page,card_id=None):
-    st.session_state.page=page
-    st.session_state.card_id=card_id
-    st.rerun()
+from navigation import change_view
 
 def home():
     st.title("Karty produktów",text_alignment="center")
