@@ -2,6 +2,7 @@ import streamlit as st
 import json
 from database import insert_card,card_by_id
 from datetime import datetime
+import ast
 
 def form():
     st.selectbox("Szablon",["","podroby_1","podroby_2"],placeholder="Wybierz szablon",key="template")
@@ -68,3 +69,6 @@ def new():
 
 def create_from_copy():
     card = card_by_id(st.session_state.card_id)
+    card_dict = ast.literal_eval(card["data"].iloc[0])
+    template = card_dict.pop("template")
+    version = card_dict.pop("version")
