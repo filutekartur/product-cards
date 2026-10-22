@@ -15,6 +15,14 @@ def list_of_cards_indeks(indeks):
     )
     return cards
 
+def card_by_id(id):
+    card=conn.query(
+        'select * from cards_v where id = :id',
+        params = {'id': id},
+        ttl=0
+    )
+    return card
+
 def insert_card(form_data):
     cards = list_of_cards_indeks(form_data["indeks"])
     if cards.shape[0]>0:
