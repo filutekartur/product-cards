@@ -72,3 +72,14 @@ def create_from_copy():
     card_dict = ast.literal_eval(card["data"].iloc[0])
     template = card_dict.pop("template")
     version = card_dict.pop("version")
+    fill_session_keys(card_dict,template)
+    new()
+
+def fill_session_keys(card_data,card_template):
+    fields=read_file(f"templates/{card_template}")
+    for field in fields:
+        if field["type"] == "datetime_input":
+            None
+        else:
+            st.session_state[field["key"]]=card_data[field["key"]]
+    st.session_state["template"]=card_template
