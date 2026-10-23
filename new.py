@@ -3,6 +3,7 @@ import json
 from database import insert_card,card_by_id
 from datetime import datetime
 import ast
+from navigation import change_view
 
 def form():
     st.selectbox("Szablon",["","podroby_1","podroby_2"],placeholder="Wybierz szablon",key="template")
@@ -83,3 +84,9 @@ def fill_session_keys(card_data,card_template):
         else:
             st.session_state[field["key"]]=card_data[field["key"]]
     st.session_state["template"]=card_template
+@st.dialog("Podsumowanie karty")
+def dialog_confirmation(data):
+    st.dataframe(data)
+    if st.button("Zatwierdź",key="approve"):
+        insert_card(data)
+        change_view("home")
