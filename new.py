@@ -66,7 +66,7 @@ def new():
         with st.container(border=True):
             cards_data.update(form())
     if cards_data:
-        insert_card(cards_data)
+        dialog_confirmation(cards_data)
 
 def create_from_copy():
     card = card_by_id(st.session_state.card_id)
