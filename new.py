@@ -48,8 +48,8 @@ def new():
         l,r=st.columns([5,9])
         l.text_input("Indeks",key="indeks")
         if st.session_state.indeks:
-            val = valid_indeks(st.session_state.indeks)
-            if not val:
+            error = valid_indeks(st.session_state.indeks)
+            if not error:
                 r.write("")
                 r.write("")
                 r.markdown(":green[✓]")
@@ -59,8 +59,8 @@ def new():
             else:
                 r.write("")
                 r.write("")
-                r.markdown(f":red[✗] :red[{val}]")
-    if st.session_state.indeks and st.session_state.lock:
+                r.markdown(f":red[✗] :red[{error}]")
+    if st.session_state.indeks:
         r.write("")
         r.markdown(":green[✓]")
         with st.container(border=True):
@@ -84,6 +84,7 @@ def fill_session_keys(card_data,card_template):
         else:
             st.session_state[field["key"]]=card_data[field["key"]]
     st.session_state["template"]=card_template
+
 @st.dialog("Podsumowanie karty")
 def dialog_confirmation(data):
     st.dataframe(data)
