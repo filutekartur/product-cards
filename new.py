@@ -43,7 +43,7 @@ def new():
     cards_data={}
     st.title("Nowa karta",text_alignment="center")
     with st.container(border=True):
-        l,r=st.columns([5,9])
+        l,r=st.columns([5,9],wrap=False)
         l.text_input("Indeks",key="indeks")
         if st.session_state.indeks:
             error = valid_indeks(st.session_state.indeks)
