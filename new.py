@@ -50,17 +50,15 @@ def new():
             if not error:
                 r.write("")
                 r.write("")
-                r.markdown(":green[✓]")
-                if l.button("Zatwierdz"):
-                    st.session_state.lock = True
-                    st.rerun()
+                r.markdown(":green[✓] :green[Indeks OK]")
+                if l.button("Pobierz dane z bazy",width="stretch"):
+                    r.write("")
+                    r.markdown(":green[✓] :green[Pobrano]")
             else:
                 r.write("")
                 r.write("")
                 r.markdown(f":red[✗] :red[{error}]")
     if st.session_state.indeks:
-        r.write("")
-        r.markdown(":green[✓]")
         with st.container(border=True):
             cards_data.update(form())
     if cards_data:
