@@ -21,7 +21,7 @@ def form():
                 if p["type"]=="datetime_input":
                     st.date_input(p["label"],key=p["key"],format="YYYY-MM-DD")
                 keys[p["key"]]=st.session_state[p["key"]]
-            if st.form_submit_button():
+            if st.form_submit_button("Dalej"):
                 keys["template"]=st.session_state["template"]
                 keys["created_at"]=keys["created_at"].strftime("%Y-%m-%d")
                 keys["updated_at"]=keys["updated_at"].strftime("%Y-%m-%d")
@@ -41,8 +41,6 @@ def valid_indeks(indeks):
 
 def new():
     cards_data={}
-    if "lock" not in st.session_state:
-        st.session_state.lock = False
     st.title("Nowa karta",text_alignment="center")
     with st.container(border=True):
         l,r=st.columns([5,9])
