@@ -7,7 +7,7 @@ from navigation import change_view
 
 def form():
     st.selectbox("Szablon",["","podroby_1","podroby_2"],placeholder="Wybierz szablon",key="template")
-    keys={"indeks":st.session_state.indeks}
+    card_data={"indeks":st.session_state.indeks}
     if st.session_state.template:
         with st.form(key="card"):
             fields=read_file(f"templates/{st.session_state.template}")
@@ -20,12 +20,12 @@ def form():
                     st.number_input(p["label"],key=p["key"])
                 if p["type"]=="datetime_input":
                     st.date_input(p["label"],key=p["key"],format="YYYY-MM-DD")
-                keys[p["key"]]=st.session_state[p["key"]]
+                card_data[p["key"]]=st.session_state[p["key"]]
             if st.form_submit_button("Dalej"):
-                keys["template"]=st.session_state["template"]
-                keys["created_at"]=keys["created_at"].strftime("%Y-%m-%d")
-                keys["updated_at"]=keys["updated_at"].strftime("%Y-%m-%d")
-                return keys
+                card_data["template"]=st.session_state["template"]
+                card_data["created_at"]=card_data["created_at"].strftime("%Y-%m-%d")
+                card_data["updated_at"]=card_data["updated_at"].strftime("%Y-%m-%d")
+                return card_data
     return {}
 
 def read_file(file_name):
