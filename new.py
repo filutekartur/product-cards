@@ -39,25 +39,26 @@ def valid_indeks(indeks):
     if not indeks.isascii() or not indeks.isdigit():
         return "Indeks może zawierać wyłącznie cyfry 0-9"
 
+def indeks_form():
+    with st.container(border=True):
+            l,r=st.columns([5,9],wrap=False)
+            l.text_input("Indeks",key="indeks")
+            if not st.session_state.indeks:
+                return
+            error = valid_indeks(st.session_state.indeks)
+            r.write("")
+            r.write("")
+            if error:
+                r.markdown(f":red[✗] :red[{error}]")
+                return
+            r.markdown(":green[✓] :green[Indeks OK]")
+            if l.button("Pobierz dane z bazy",width="stretch"):
+                r.markdown(":green[✓] :green[Pobrano]")
+
 def new():
     cards_data={}
     st.title("Nowa karta",text_alignment="center")
-    with st.container(border=True):
-        l,r=st.columns([5,9],wrap=False)
-        l.text_input("Indeks",key="indeks")
-        if st.session_state.indeks:
-            error = valid_indeks(st.session_state.indeks)
-            if not error:
-                r.write("")
-                r.write("")
-                r.markdown(":green[✓] :green[Indeks OK]")
-                if l.button("Pobierz dane z bazy",width="stretch"):
-                    r.write("")
-                    r.markdown(":green[✓] :green[Pobrano]")
-            else:
-                r.write("")
-                r.write("")
-                r.markdown(f":red[✗] :red[{error}]")
+    indeks_form()
     if st.session_state.indeks:
         with st.container(border=True):
             cards_data.update(form())
