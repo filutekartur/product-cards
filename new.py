@@ -17,7 +17,7 @@ def new():
 
 def create_from_copy():
     card = card_by_id(st.session_state.card_id)
-    card_dict = ast.literal_eval(card["data"].iloc[0])
+    card_dict = ast.literal_eval(card["data"].iloc[0])#creates dictionary from json from data column
     template = card_dict.pop("template")
     version = card_dict.pop("version")
     fill_session_keys(card_dict,template)
