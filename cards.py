@@ -7,12 +7,14 @@ def handle_click(table):
     card_id = int(table.loc[click["row"]]["id"])
     if "Kopiuj" in click["label"]:
         change_view("create_from_copy",card_id)
+    if "Pobierz" in click["label"]:
+        None
 
 def cards():
     df=list_of_cards()
-    df["kopiuj"] = ":material/open_in_new: Kopiuj"
+    df["more"] = [[":material/edit_document: Kopiuj",":material/description: Pobierz"]] * len(df)
     st.dataframe(df,column_config={
-        "kopiuj": st.column_config.ButtonColumn(
+        "more": st.column_config.ButtonColumn(
             type="secondary", on_click=handle_click, key="action_click",args=(df,)
         )
     })
